@@ -10,7 +10,7 @@ include_directories(src)
 
 # find_package(Threads REQUIRED)
 
-add_executable(main src/compiling_string.hpp src/main.cpp)
+add_executable(main src/compiling_string.hpp src/logger.hpp src/main.cpp)
 target_link_libraries(main fmt)
 # target_link_libraries(console kernel -latomic quill::quill ${CMAKE_THREAD_LIBS_INIT})
 
