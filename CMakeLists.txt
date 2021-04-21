@@ -8,10 +8,10 @@ set(CMAKE_BUILD_TYPE "Release")
 add_subdirectory(fmt)
 include_directories(src)
 
-# find_package(Threads REQUIRED)
+find_package(Threads REQUIRED)
 
-add_executable(main src/compiling_string.hpp src/logger.hpp src/main.cpp)
-target_link_libraries(main fmt)
+add_executable(main src/compiling_string.hpp src/logger.hpp src/logger_queue_t.hh src/logger_queue_t.cc src/main.cpp)
+target_link_libraries(main fmt ${CMAKE_THREAD_LIBS_INIT})
 # target_link_libraries(console kernel -latomic quill::quill ${CMAKE_THREAD_LIBS_INIT})
 
 EXECUTE_PROCESS(COMMAND uname -m OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE architecture)
