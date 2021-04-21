@@ -2,7 +2,7 @@
 #include "fmt/core.h"
 
 /**
- * @brief 日志核心功能
+ * @brief 日志前端核心功能
  *
  * 方案：将参数序列化到 `std::tuple`，使之可延迟格式化到 `std::string`
  *
