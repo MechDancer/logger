@@ -1,5 +1,5 @@
-﻿#ifndef COMPILING_STRING_HPP
-#define COMPILING_STRING_HPP
+﻿#ifndef LOGGER_COMPILING_STRING_HPP
+#define LOGGER_COMPILING_STRING_HPP
 
 /**
  * 编译期的字符串，支持拼接、截取
@@ -86,4 +86,4 @@ conact_strings(T... str) {
     return generate_array<total_length(str...) - sizeof...(T) + 1>([&str...](auto i) { return get_char_from_string(i, str...); });
 }
 
-#endif// COMPILING_STRING_HPP
+#endif// LOGGER_COMPILING_STRING_HPP

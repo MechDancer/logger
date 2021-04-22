@@ -1,4 +1,7 @@
-﻿#include "fmt/chrono.h"
+﻿#ifndef LOGGER_LOGGER_HPP
+#define LOGGER_LOGGER_HPP
+
+#include "fmt/chrono.h"
 #include "fmt/core.h"
 
 /**
@@ -77,3 +80,5 @@ namespace mechdancer::logger {
         return new specific_item_t<_meta_t, _args_t...>(level, std::forward<_args_t>(args)...);
     }
 }// namespace mechdancer::logger
+
+#endif// LOGGER_LOGGER_HPP

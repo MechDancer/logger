@@ -1,4 +1,7 @@
-﻿#include "compiling_string.hpp"
+﻿#ifndef LOGGER_LOGGER_QUEUE_T_HH
+#define LOGGER_LOGGER_QUEUE_T_HH
+
+#include "compiling_string.hpp"
 #include "logger.hpp"
 
 #include <memory>
@@ -26,3 +29,5 @@ namespace mechdancer::logger {
     logger_queue_t *get_logger(std::string = "default", uint8_t = 255);
 
 }// namespace mechdancer::logger
+
+#endif// LOGGER_LOGGER_QUEUE_T_HH

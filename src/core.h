@@ -1,4 +1,7 @@
-﻿#include "logger_queue_t.hh"
+﻿#ifndef LOGGER_CORE_H
+#define LOGGER_CORE_H
+
+#include "logger_queue_t.hh"
 
 // any value in macro to string
 
@@ -90,3 +93,5 @@ namespace {
     } else {                                                                               \
         /*nothing to do*/                                                                  \
     }
+
+#endif// LOGGER_CORE_H
