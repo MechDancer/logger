@@ -23,6 +23,6 @@ namespace mechdancer::logger {
         void flush();
     };
 
-    logger_queue_t *get_logger(std::string, uint8_t);
+    logger_queue_t *get_logger(std::string = "default", uint8_t = 255);
 
 }// namespace mechdancer::logger
