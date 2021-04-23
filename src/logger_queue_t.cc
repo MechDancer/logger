@@ -6,6 +6,12 @@
 
 static std::unordered_map<std::string, mechdancer::logger::logger_queue_t> queues;
 
+static void flush_all() {
+    for (auto &[_, p] : queues)
+        p.flush();
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+}
+
 namespace mechdancer::logger {
     class logger_queue_t::kernel_t {
     public:
@@ -66,6 +72,9 @@ namespace mechdancer::logger {
     }
 
     logger_queue_t *get_logger(std::string name, uint8_t level) {
+        struct on_exit_flush {
+            on_exit_flush() { atexit(flush_all); }
+        } static on_exit;
         auto [p, _] = queues.try_emplace(name, level);
         return &p->second;
     }
