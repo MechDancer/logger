@@ -31,7 +31,7 @@ namespace mechdancer::logger {
 
     logger_queue_t::logger_queue_t(const char *name, uint8_t level)
         : _kernel(new kernel_t(level)),
-          _worker(std::thread([name_ = fmt::format("logger: {}", name), q = _kernel] {
+          _worker(std::thread([name_ = fmt::format("logger:{}", name), q = _kernel] {
               pthread_setname_np(pthread_self(), name_.c_str());
               std::vector<log_item_t *> result;
               result.reserve(1024);
