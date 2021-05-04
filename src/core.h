@@ -81,7 +81,7 @@ namespace {
             constexpr static auto meta() noexcept {                                        \
                 return conact_strings(                                                     \
                     log_item_model_t<level>::prefix,                                       \
-                    std::to_array("LOG LEVEL {:<3} {:%Y-%m-%d %H:%M:%S}.{:<6} ("),         \
+                    std::to_array("LOG LEVEL {:<3} {:%Y-%m-%d %H:%M:%S}.{:>6} ("),         \
                     file, std::to_array("("),                                              \
                     line, std::to_array("): "),                                            \
                     func, std::to_array(") | "),                                           \
