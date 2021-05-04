@@ -19,7 +19,7 @@ namespace mechdancer::logger {
         std::thread _worker;
 
     public:
-        explicit logger_queue_t(uint8_t level = ACTIVE_LOG_LEVEL);
+        explicit logger_queue_t(const char *, uint8_t = ACTIVE_LOG_LEVEL);
         ~logger_queue_t();
 
         void enqueue(log_item_t *);
