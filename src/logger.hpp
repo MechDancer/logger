@@ -4,6 +4,8 @@
 #include "fmt/chrono.h"
 #include "fmt/core.h"
 
+#include <memory>
+
 /**
  * @brief 日志前端核心功能
  *
@@ -77,7 +79,7 @@ namespace mechdancer::logger {
      */
     template<class _meta_t, class... _args_t>
     inline auto make_specific_new_item(uint8_t level, _args_t &&...args) {
-        return new specific_item_t<_meta_t, _args_t...>(level, std::forward<_args_t>(args)...);
+        return std::unique_ptr<log_item_t>(new specific_item_t<_meta_t, _args_t...>(level, std::forward<_args_t>(args)...));
     }
 }// namespace mechdancer::logger
 

@@ -18,7 +18,7 @@ namespace mechdancer::logger {
         uint8_t _level;
         std::mutex _mutex;
         std::condition_variable _signal;
-        std::vector<log_item_t *> _buffer[2];
+        std::vector<std::unique_ptr<log_item_t>> _buffer[2];
 
         volatile bool running;
 
@@ -33,7 +33,7 @@ namespace mechdancer::logger {
         : _kernel(new kernel_t(level)),
           _worker(std::thread([name_ = fmt::format("logger:{}", name), q = _kernel] {
               pthread_setname_np(pthread_self(), name_.c_str());
-              std::vector<log_item_t *> result;
+              std::vector<std::unique_ptr<log_item_t>> result;
               result.reserve(1024);
               while (q->running) {
                   std::unique_lock<std::mutex> lock(q->_mutex);
@@ -56,11 +56,11 @@ namespace mechdancer::logger {
         _worker.join();
     }
 
-    void logger_queue_t::enqueue(log_item_t *item) {
+    void logger_queue_t::enqueue(std::unique_ptr<log_item_t> &&item) {
         if (item->level() > _kernel->_level) return;
 
         std::unique_lock<std::mutex> lock(_kernel->_mutex);
-        _kernel->_buffer[0].push_back(item);
+        _kernel->_buffer[0].emplace_back(std::move(item));
         if (_kernel->_buffer[0].size() == 1024) {
             _kernel->_buffer[0].swap(_kernel->_buffer[1]);
             _kernel->_signal.notify_one();

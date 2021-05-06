@@ -4,7 +4,6 @@
 #include "compiling_string.hpp"
 #include "logger.hpp"
 
-#include <memory>
 #include <thread>
 
 #ifndef ACTIVE_LOG_LEVEL
@@ -22,7 +21,7 @@ namespace mechdancer::logger {
         explicit logger_queue_t(const char *, uint8_t = ACTIVE_LOG_LEVEL);
         ~logger_queue_t();
 
-        void enqueue(log_item_t *);
+        void enqueue(std::unique_ptr<log_item_t> &&);
         void flush();
     };
 
