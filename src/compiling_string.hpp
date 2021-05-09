@@ -7,6 +7,7 @@
  */
 
 #include <array>
+#include <cstddef>
 
 // 编译期的字符串利用 `std::array<char>` 来存储
 // 下面的函数用于根据特定函数生成 `std::array<char>`
