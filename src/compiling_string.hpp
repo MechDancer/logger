@@ -75,7 +75,7 @@ get_char_from_string(size_t i, const T &head, const Ts &...tail) {
         throw "string not end with \\0";
     if (i + 1 < std::size(head))
         if (!head[i])
-            throw "\0 at middle of string";
+            throw "\\0 at middle of string";
         else
             return head[i];
     return get_char_from_string(i - std::size(head) + 1, tail...);

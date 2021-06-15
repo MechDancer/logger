@@ -5,7 +5,6 @@ project(logger LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(fmt)
-include_directories(src)
 
 find_package(Threads REQUIRED)
 

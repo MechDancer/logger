@@ -49,12 +49,12 @@ namespace mechdancer::logger {
 
         template<size_t... _index>
         auto format(std::index_sequence<_index...>) const {
-            return fmt::format(meta.data(), std::get<0>(_parameters), _stamp, ms(), std::get<_index + 1>(_parameters)...);
+            return fmt::vformat(fmt::string_view(meta.data()), fmt::make_format_args(std::get<0>(_parameters), _stamp, ms(), std::get<_index + 1>(_parameters)...));
         }
 
         template<size_t... _index>
         auto display(std::index_sequence<_index...>) const {
-            fmt::print(meta.data(), std::get<0>(_parameters), _stamp, ms(), std::get<_index + 1>(_parameters)...);
+            return fmt::vprint(fmt::string_view(meta.data()), fmt::make_format_args(std::get<0>(_parameters), _stamp, ms(), std::get<_index + 1>(_parameters)...));
         }
 
     public:

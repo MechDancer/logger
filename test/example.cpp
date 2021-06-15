@@ -1,4 +1,4 @@
-﻿#include "core.h"
+﻿#include "../src/core.h"
 
 int main() {
     auto logger = mechdancer::logger::get_logger("default", 10);
