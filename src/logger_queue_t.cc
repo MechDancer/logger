@@ -1,6 +1,7 @@
 ﻿#include "logger_queue_t.hh"
 
 #include <condition_variable>
+#include <iostream>
 #include <unordered_map>
 #include <vector>
 
@@ -47,6 +48,7 @@ namespace mechdancer::logger {
                   lock.unlock();
                   for (const auto &item : result)
                       item->display();
+                  std::cout.flush();
                   result.clear();
               };
           })) {}
